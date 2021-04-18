@@ -15,6 +15,8 @@ const { animals } = require('./data/animals');
 //   }
 //   return filteredResults;
 // }
+// test
+
 
 function filterByQuery(query, animalsArray) {
   let personalityTraitsArray = [];
