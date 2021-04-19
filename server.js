@@ -10,6 +10,8 @@ const path = require('path');
 app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
+// style sheet middleware
+app.use(express.static('public'));
 
 
 // function filterByQuery(query, animalsArray) {
@@ -142,6 +144,26 @@ app.post('/api/animals', (req, res) => {
 //   console.log('API server now on port 3001!');
 // });
 
+// hosting main html page
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+// hosting animals html page
+app.get('/animals', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+
+// hosting zookeepers webpage
+app.get('/zookeepers', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+// app.listen should always be last
 app.listen(PORT, () => {
   console.log(`API server now on port ${PORT}!`)
 });
